@@ -131,9 +131,11 @@ public class WriteAndReadFiles {
 	    							updated = true;
 	    						}
 //	    						storing all the data in an arraylist of string arrays
-	    						myArrayList.add(stringArray);  					
+	    						myArrayList.add(stringArray); 
+//	    						System.out.println(Arrays.toString(stringArray));
 	    					}
 	    					// end of read
+
 	    					
 	    					//if a record is updated, then 
 	    						//1)store all the value(with the updated record) in an arraylist of strings
@@ -143,12 +145,12 @@ public class WriteAndReadFiles {
 		    						//deleting all the contents of the binary file 
 	    							//(i.e. add blank value without append to the same file)
 	    							try (DataOutputStream outputAdd = new DataOutputStream(new FileOutputStream(filePath))) {
-										outputAdd.writeBytes("");
-										for(int m=0;m<myArrayList.size();m++) {
-			    							for(int n=0;n<stringArray.length;n++) {
-			    								outputAppend.writeBytes(stringArray[n]);
+//										outputAdd.writeBytes("");
+										for(String[] arr : myArrayList) {
+			    							for(int i=0;i<arr.length;i++) {				
+			    								outputAppend.writeBytes(arr[i]);
 			    								//if its the last field i.e. poscode , write ~ after it else write a comma
-			    								if(n==stringArray.length-1) {
+			    								if(i==arr.length-1) {
 			    									outputAppend.writeBytes("~");
 			    								}else {
 			    									outputAppend.writeBytes(",");
