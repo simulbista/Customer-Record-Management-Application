@@ -183,9 +183,6 @@ public class WriteAndReadFiles {
     	//flag to check if the result searched was found
     	boolean found = false;
     	
-    	//setting the array of strings to null by default (only updated it if the record has been found otherwise return null)
-    	stringArray = null;
-    	
     	//search only if the file exists
 		if(myFile.exists()) {
 	    	try (
@@ -224,6 +221,9 @@ public class WriteAndReadFiles {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		if(!found) {
+			stringArray = null;
 		}
 		return stringArray;
     }
